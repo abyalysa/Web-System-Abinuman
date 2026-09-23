@@ -11,7 +11,8 @@
             <tr>
                 <td><?= esc($customer['full_name']) ?></td>
                 <td><?= esc($customer['email']) ?></td>
-                <td><?= esc($customer['age']) ?></td>
+                <td><?= esc($customer['phone']) ?></td>
+                <td><?= esc($customer['created_at']) ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
