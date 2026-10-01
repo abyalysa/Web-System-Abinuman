@@ -13,5 +13,9 @@
         <label>Full Name:</label><br>
         <input type="text" name="full_name" value="<?= old('full_name') ?>">
     </p>
+    <p>
+        <label>Password: </label><br>
+        <input type="password" name="password">
+    </p>
     <button type="submit">Save User</button>
 </form>

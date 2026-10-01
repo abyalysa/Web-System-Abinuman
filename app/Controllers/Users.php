@@ -22,26 +22,25 @@ class Users extends BaseController
     }
 
     public function create()
-    {
-        $rules = [
-            'username'  => 'required|is_unique[users.username]',
-            'full_name' => 'required',
-        ];
-
-        if (! $this->validate($rules)) {
-            return view('templates/nav') . view('users/new', [
-                'validation' => $this->validator,
-            ]);
-        }
-
-        $this->userModel->save([
-            'username'   => $this->request->getPost('username'),
-            'full_name'  => $this->request->getPost('full_name'),
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
-
-        return redirect()->to('/users');
-    }
+{
+   $rules = [
+       'username' => 'required|is_unique[users.username]',
+       'full_name' => 'required',
+       'password'  => 'required|min_length[6]',
+   ];
+   if (! $this->validate($rules)) {
+       return view('templates/nav') . view('users/new', [
+           'validation' => $this->validator,
+       ]);
+   }
+   $this->userModel->save([
+       'username'   => $this->request->getPost('username'),
+       'full_name'  => $this->request->getPost('full_name'),
+       'password'   => password_hash($this->request->getPost('password'), PASSWORD_BCRYPT),
+       'created_at' => date('Y-m-d H:i:s'),
+   ]);
+   return redirect()->to('/users');
+}
 
     public function edit($id)
     {
